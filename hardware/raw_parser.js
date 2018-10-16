@@ -43,11 +43,11 @@ class RawParser extends Transform {
   this.buffer = data;
   cb();
 }
-_flush (cb) {
-  this.push(this.buffer);
-  this.buffer = Buffer.alloc(0);
-  cb();
-}
+  _flush (cb) {
+    this.push(this.buffer);
+    this.buffer = Buffer.alloc(0);
+    cb();
+  }
 }
 
 module.exports = RawParser;

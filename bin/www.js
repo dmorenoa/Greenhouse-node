@@ -1,5 +1,5 @@
-var app = require('../app')
-var io = require('../io');
+var app = require('express')
+var io = require('socket.io');
 var server = require('http').createServer(app);
 
 var port = process.env.PORT || 8000;
