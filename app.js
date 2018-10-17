@@ -1,30 +1,23 @@
-var SerialPort = require('serialport');
-var RawParser = require('./hardware/raw_parser');
-
-var socketIo = require('socket.io');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var app = express();
+
+// set the view engine to ejs
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 
-var port = new SerialPort('COM8',{
-    baudRate: 9600
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger('common'));
 
-parser = port.pipe(new RawParser());
+var index = require('./routes/index');
 
-parser.on('data', function(data){
-    console.log(data);
-    var result = {
-        origen : data[1].toString(16),
-        destino : data[2].toString(16),
-        longitud : data[3],
-        payload : {},
-        checksum : data[data.length + 5].toString(16)
-    }
-    for(var i = 3; i<data.length -2; i+=2){
-        var buf = Buffer.from([data[i+1], data[i+2]]);
-        result.payload[data[i].toString(16)] = buf.readInt16BE(0);
-      }
-    console.log(result);
-});
+app.use('/', index);
+
+app.listen(8000);
+console.log('8000 is the magic port');
