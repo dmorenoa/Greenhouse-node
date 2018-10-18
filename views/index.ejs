@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My First HTML! done for SDA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Daniel Moreno Agudelo">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-socket-io/0.7.0/socket.js"></script>
+  <script src="../public/app.js"></script>
+</head>
+
+<body ng-app='rt-arduino' ng-controller='report-controller' style="background-color:lawngreen;font-family:verdana;">
+
+<h1 style="font-size:35px;text-align:center;">Greenhouse Temperature Control System</h1>
+<hr>
+<p>This system was created to control temperature inside a greenhouse by opening water valves to mist the crop.</p>
+<hr>
+
+<h1>List of possible commands</h1>
+
+<ul>
+  <li>Add temperature sensor</li>
+  <li>Add valve</li>
+  <li>Check temperature</li>
+  <li>Swap valve state</li>
+</ul>
+
+<br>
+
+<div style="background-color:black;color:white;padding:20px;">
+  <h1>Add hardware</h1>
+  <form name="add_lm35" id="addlm35" action="addtemp_sensor()">
+  Temp Sensor Pin Number:<input type="text" name="addtempsensor" id = "addtemps"> <input type="submit" value="ADD">
+  </form>
+  <form name="add_relay" id="addrelay" action="add_relay()">
+  Relay Pin Number:<input type="text" name="addrel" id = "addrel"> <input type="submit" value="ADD">
+  </form>
+  <br>
+</div>
+
+<h1>Check hardware</h1>
+
+<button onclick="checktemp()">Check temp</button> <button>Swap valve state</button>
+
+</body>
+</html>

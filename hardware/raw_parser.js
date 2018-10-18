@@ -1,5 +1,5 @@
-const Buffer = require('safe-buffer').Buffer;
-const Transform = require('stream').Transform;
+var Buffer = require('safe-buffer').Buffer;
+var Transform = require('stream').Transform;
 
 class RawParser extends Transform {
     constructor (options) {
@@ -16,7 +16,7 @@ class RawParser extends Transform {
         len: null,
         payload : null,
         checksum: null,
-  }
+  };
 
   if ((parser.pos = data.indexOf(0x23)) !== -1) {
 
