@@ -1,5 +1,5 @@
 var SerialPort = require('serialport');
-var RawParser = require('./hardware/raw_parser');
+var RawParser = require('./raw_parser');
 var Events = require('events');
 
 class Com extends Events.EventEmitter {
